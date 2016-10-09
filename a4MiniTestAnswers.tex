@@ -1,0 +1,108 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4
+}
+
+
+
+
+\title{A4 MiniTest Answers}
+\author{Joel Busch, Jakob Meier, Pascal Oberholzer}
+
+\begin{document}
+	\maketitle
+	
+	\section*{1. (Sensor Framework)}
+		\subsection*{A) Code Snippets}
+			\subsubsection*{a) List available sensors of a device}
+				\begin{lstlisting}
+					//edit list_view
+					ListView list_view = (ListView) findViewById(R.id.sensor_list);
+					list_view.setOnItemClickListener(this);
+					
+					//get all sensors
+					SensorManager mgr = (SensorManager) getSystemService(SENSOR_SERVICE);
+					List<Sensor> sensors = mgr.getSensorList(Sensor.TYPE_ALL);
+					
+					
+					
+					SensorArrayAdapter<Sensor> array_adapter = new SensorArrayAdapter<Sensor>(this,
+					android.R.layout.simple_list_item_1,
+					sensors);
+					
+					list_view.setAdapter(array_adapter);
+				\end{lstlisting}
+
+			\subsubsection*{b) Retrieve the value range of a specific Sensor}
+				\begin{lstlisting}
+					Sensor item;
+					item.getMaximumRange();
+				\end{lstlisting}
+
+			\subsubsection*{c) Register for monitoring Accelerometer sensor changes at the maximum available rate}
+				\begin{lstlisting}
+					//initialize a SensorManager
+					SensorManager sm = (SensorManager)getSystemService(SENSOR_SERVICE);
+					Sensor sensor;
+					
+					//from AntiTheftService
+					movementDetector = new SpikeMovementDetector(this, sensitivity);
+					
+					//get ACCELERATION sensor
+					sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELERATION);
+					
+					//register Listener with fastest available delay
+					sm.registerListener(movementDetector, sensor, SensorManager.SENSOR_DELAY_FASTEST);
+				\end{lstlisting}
+				
+				
+		\subsection*{B) Search the Mistake}
+		
+	\section*{2. (Activity Lifecycle)}
+	
+	\section*{3. (Resources)}
+	
+	\section*{4.}
+	
+	\section*{5. (Service Lifecycle)}
+		\subsection*{a)}
+		
+		\subsection*{b)}
+		
+		\subsection*{c)}
+		
+		\subsection*{d)}
+	
+	\section*{6. (Android Manifest)}
+	
+	
+\end{document}
