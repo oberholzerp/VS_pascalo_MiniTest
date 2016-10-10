@@ -53,8 +53,6 @@
 					SensorManager mgr = (SensorManager) getSystemService(SENSOR_SERVICE);
 					List<Sensor> sensors = mgr.getSensorList(Sensor.TYPE_ALL);
 					
-					
-					
 					SensorArrayAdapter<Sensor> array_adapter = new SensorArrayAdapter<Sensor>(this,
 					android.R.layout.simple_list_item_1,
 					sensors);
@@ -65,7 +63,7 @@
 			\subsubsection*{b) Retrieve the value range of a specific Sensor}
 				\begin{lstlisting}
 					Sensor item;
-					item.getMaximumRange();
+					float maxRange = item.getMaximumRange();
 				\end{lstlisting}
 
 			\subsubsection*{c) Register for monitoring Accelerometer sensor changes at the maximum available rate}
@@ -74,33 +72,47 @@
 					SensorManager sm = (SensorManager)getSystemService(SENSOR_SERVICE);
 					Sensor sensor;
 					
-					//from AntiTheftService
-					movementDetector = new SpikeMovementDetector(this, sensitivity);
+					//initialize listener
+					SensorEventListener listener;
+					listener = new ... ;
 					
 					//get ACCELERATION sensor
-					sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELERATION);
+					sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 					
 					//register Listener with fastest available delay
-					sm.registerListener(movementDetector, sensor, SensorManager.SENSOR_DELAY_FASTEST);
+					sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_FASTEST);
 				\end{lstlisting}
 				
 				
 		\subsection*{B) Search the Mistake}
+			Before using an event it has to be cloned, because it may be part of an internal pool and may be reused by the framework. \\
 		
 	\section*{2. (Activity Lifecycle)}
+		Resumed: onResume(); \\
+		Paused: onPause(); \\
+		Stopped: onStop(); \\
 	
 	\section*{3. (Resources)}
+		Strings should be defined in the value directory, a subdirectory from resources (res), in a string.xml file. \\
+		The advantage is to separate the model from the view (MVC). That means that the displayed text can be changed without changing the logic of the application (e.g.: change the language). \\
 	
-	\section*{4.}
+	\section*{4.(What are Intents?)}
+		An intent is an abstract description of an operation to be performed. \\
+		Intents are used to exchange information between operations (e.g.: activities, services). \\
+		Explicit Intents specify the action and the components which should be used (e.g.: start an activity). Implicit Intents don't specify the Android components which should be called. The user may choose the Android component at runtime (e.g.: go to a specific website but the user can choose the browser). \\
 	
 	\section*{5. (Service Lifecycle)}
 		\subsection*{a)}
+			false, Context.stopService(); stops the service before it finished its job
 		
 		\subsection*{b)}
+			true
 		
 		\subsection*{c)}
+			true
 		
 		\subsection*{d)}
+			false
 	
 	\section*{6. (Android Manifest)}
 	
