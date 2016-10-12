@@ -115,6 +115,11 @@
 			false
 	
 	\section*{6. (Android Manifest)}
-	
+		The manifest further needs the following three tags within it's application tag: \\
+		\begin{lstlisting}
+			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+			<uses-permission android:name="android.permission.SEND_SMS" />
+			<service android:name=".LocationService" />
+		\end{lstlisting}
 	
 \end{document}
